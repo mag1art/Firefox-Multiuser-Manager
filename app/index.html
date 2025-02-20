@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вход в браузер</title>
+    <title>Вход в удалённый браузер</title>
     <style>
         body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
         input, button { padding: 10px; font-size: 16px; margin: 10px; }
@@ -11,21 +11,13 @@
 </head>
 <body>
     <h2>Вход в удалённый браузер</h2>
-    <input type="text" id="username" placeholder="Введите ваше имя">
-    <button onclick="login()">Войти</button>
-
-    <script>
-        function login() {
-            let username = document.getElementById("username").value.trim();
-            username = username.replace(/[^a-zA-Z0-9 ]/g, ""); // Убираем спецсимволы, кроме пробелов
-            username = username.replace(/\s+/g, "_"); // Меняем пробелы на "_"
-
-            if (username) {
-                window.location.href = "/start_session/" + encodeURIComponent(username);
-            } else {
-                alert("Введите корректное имя (только буквы, цифры и пробелы)!");
-            }
-        }
-    </script>
+    <form action="/start_session" method="post">
+        <input type="text" name="username" placeholder="Введите ваше имя" required>
+        <button type="submit">Войти</button>
+    </form>
+    <br>
+    <form action="/logout" method="get">
+        <button type="submit">Выйти</button>
+    </form>
 </body>
 </html>
